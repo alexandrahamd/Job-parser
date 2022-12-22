@@ -1,3 +1,5 @@
+import json
+
 
 class Vacancy(list):
     __all = []
@@ -20,7 +22,7 @@ class Vacancy(list):
         self.__all.append(self)
 
     def __repr__(self):
-        return f'Название: {self.name}, ссылка: {self.href}, зп: {self.salary}'
+        return f'Название: {self.name}, Ссылка: {self.href}, Зп: {self.salary}'
 
     # проверка данных
     @classmethod
@@ -68,29 +70,30 @@ class Vacancy(list):
 
 class CountMixin:
 
-    @property
-    def get_count_of_vacancy(self):
-        """
-        Вернуть количество вакансий от текущего сервиса.
-        Получать количество необходимо динамически из файла.
-        """
-        return
+    # @property
+    def get_count_of_vacancy(self, file):
+        try:
+            with open(file, "r") as f:
+                files = json.load(f)
+        except IOError:
+            print("Error")
+        return len(files)
 
 
 
-class HHVacancy(Vacancy):  # add counter mixin
+class HHVacancy(CountMixin, Vacancy):  # add counter mixin
     """ HeadHunter Vacancy """
 
     def __repr__(self):
-        return f'HH: {self.name}, ссылка: {self.href}, зарплата: {self.salary} руб/мес'
+        return f'HH: {super().__repr__()}'
 
 
 
-class SJVacancy(Vacancy):  # add counter mixin
+class SJVacancy(CountMixin, Vacancy):  # add counter mixin
     """ SuperJob Vacancy """
 
     def __repr__(self):
-        return f'HH: {self.name}, ссылка: {self.href}, зарплата: {self.salary} руб/мес'
+        return f'HH: {super().__repr__()}'
 
 
 def sorting(vacancies):

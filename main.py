@@ -20,10 +20,11 @@ if __name__ == '__main__':
     res_sj = list(read_file_js('df_sj.json'))
     vacancies_hh = [HHVacancy(i['name'], i['href'], i['salary']) for i in res_hh]   #создание экземпляров класса из файла
     vacancies_sj = [SJVacancy(i['name'], i['href'], i['salary']) for i in res_sj]
+    print(f"С сайта SJ {vacancies_sj[1].get_count_of_vacancy('df_sj.json')} вакансий")    # получение колличества вакансий из файла
     a = Vacancy('0', '0', '0')
     _all = Vacancy.return__all(a)  # все вакансии вместе
     sorting__all = sorting(Vacancy.return__all(a))  # сортировка всех вакансий
-    top_vacancies = get_top(sorting__all, top_count)   # топ вакансий
+    top_vacancies = get_top(sorting__all, 5)   # топ вакансий
     iterator = iter(top_vacancies)         #итератор
     insert(top_vacancies)       #добавление результата в файл
     while True:    #вывод результата на экран
