@@ -93,7 +93,7 @@ class SJVacancy(CountMixin, Vacancy):  # add counter mixin
     """ SuperJob Vacancy """
 
     def __repr__(self):
-        return f'HH: {super().__repr__()}'
+        return f'SJ: {super().__repr__()}'
 
 
 def sorting(vacancies):
