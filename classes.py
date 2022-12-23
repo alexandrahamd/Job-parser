@@ -6,7 +6,7 @@ class Engine(ABC):
     __per_page = 20
     @abstractmethod
     def get_request(self):
-        raise NotImplementedError
+        pass
 
     @staticmethod
     def get_connector(file_name):

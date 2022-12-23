@@ -27,17 +27,11 @@ class Connector:
 
     def insert(self, data):
         try:
-            with open(self.__data_file, 'r+', encoding='utf-8') as f:
-                files = json.load(f)
-                files.append(data)
-
             with open(self.__data_file, 'w', encoding='utf-8') as f:
-                json.dump(files, f)
-
-        except:
-
-            with open(self.__data_file, 'w', encoding='utf-8') as f:
+                f.seek(0)
                 json.dump(data, f)
+        except:
+            print('Ошибка записи файла')
 
         return self.__data_file
 
